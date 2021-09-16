@@ -1,0 +1,72 @@
+---
+title: "South African Data Visualisation"
+author: "Umar Ahmad"
+date: "6/16/2021"
+output: word_document
+---
+# Introduction to the Dataset
+
+Working with the south african dataset to run all the analyses. 
+
+1. Create a new project. Make sure you put it somewhere you'll be able to find it again later!
+
+2. Import the dataset "dataset.csv" from data folder in your project 
+
+3. Create a new RMarkdown document where all of the analyses will be carried out
+
+```{r}
+library(tidyverse) ## because tidyverse
+library(skimr) ## looking at the data
+library(ggpubr) ## for qq plots
+library(rstatix) ## for shapiro_test that is pipe-friendly
+```
+
+# Importing data
+
+```{r}
+library(readr)
+dataset <- read_csv("data/dataset.csv")
+View(dataset)
+```
+
+## Data cleaning. 
+
+```{r}
+library(dplyr)
+ dat <- dataset %>% 
+    rename(year = Year, country = Country, topic = Topic, authors = Authors, 
+           no_authors = No_Authors, title = Title, institution = Institution, journal = Journal, african_journal = African_Journal, impact = Impact, citations = Citations, model = Model, genetic = Genetic, research_types = Basic_Clinical, adv_methods = Adv_Methods, plants = Plants, p_name = P_Name, p_use = P_Use, p_success = P_Success, n_affiliations = N_affiliations, international_collab = InternationalCollab) 
+ 
+ ifelse(dat$african_journal=="Yes", 1,0)
+```
+
+
+
+```{r}
+write.csv(dat, "data/data_set.csv")
+read_csv("data/data_set.csv")
+View(data_set)
+```
+
+
+## Total publication per year for clinical (green) and basic research (black). 
+
+```{r}
+
+```
+
+
+## Mean citations per annum for clinical (green) and basic research (black). 
+
+```{r}
+library(readr)
+dataset <- read_csv("data/dataset.csv")
+View(dataset)
+```
+
+## Mean citations per annum for clinical (green) and basic research (black). 
+
+```{r}
+library(readr)
+dataset <- read_csv("data/dataset.csv")
+View(dataset)

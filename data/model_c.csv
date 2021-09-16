@@ -1,0 +1,29 @@
+"","Research_Types","Model","Number_of_Studies"
+"1","Basic","Antelope",3
+"2","Basic","Baboon",10
+"3","Basic","Bat",5
+"4","Basic","Bird",3
+"5","Basic","Bovine",4
+"6","Basic","Cat",3
+"7","Basic","Cell line",7
+"8","Basic","Chicken",6
+"9","Basic","Dog",5
+"10","Basic","Elephant",9
+"11","Basic","Ferret",3
+"12","Basic","Giraffe",4
+"13","Basic","Horse",4
+"14","Basic","Human",184
+"15","Basic","Lizard",4
+"16","Basic","Mice",35
+"17","Basic","Mole rat",8
+"18","Basic","Ostrich",5
+"19","Basic","Other",60
+"20","Basic","Rat",190
+"21","Basic","Sheep",11
+"22","Clinical","Bird",1
+"23","Clinical","Dog",6
+"24","Clinical","Horse",1
+"25","Clinical","Human",604
+"26","Clinical","Other",2
+"27","Clinical","Rat",3
+"28","Clinical","Sheep",1

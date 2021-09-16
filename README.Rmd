@@ -1,0 +1,17 @@
+# South African Analysis with R
+
+Dear Umar,
+Here attached the data for South Africa. As a reminder, the specific analysis we are interested in are:-
+
+1.Total publications by institution (I think don’t include institutions with less than 5 papers in the analysis)
+2. Total citations by institution
+3. Colour shed historically adv vs historically disadv institutions (We need Dan and Imam to give us info on which are historically adv and which are disadv)
+4. Plot the collaborations structure between historically adv vs historically disadv institutions so that we can see which one's have more local and international collaborations and who are they collaborating with
+5. Plot total number of papers by institution by single author vs multiple author publications.
+
+Thanks Umar and Mahmoud!
+“Of South Africa's 26 public universities, those that are recognised as historically disadvantaged are the universities of Fort Hare, Limpopo, Venda, Walter Sisulu, the Western Cape and Zululand, as well as the Mangosuthu University of Technology and the Sefako Makgatho Health Sciences University”.
+Best, Dan
+
+Umar in the list, I think some of the Universities were merged. So their name before 2000 might be different from their name after 2000. For example.
+The University of KwaZulu-Natal (UKZN) is a university with five campuses in the province of KwaZulu-Natal in South Africa. It was formed on 1 January 2004 after the merger between the University of Natal and the University of Durban-Westville
