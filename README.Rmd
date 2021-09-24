@@ -4,9 +4,13 @@ Dear Umar,
 Here attached the data for South Africa. As a reminder, the specific analysis we are interested in are:-
 
 1.Total publications by institution (I think don’t include institutions with less than 5 papers in the analysis)
+
 2. Total citations by institution
+
 3. Colour shed historically adv vs historically disadv institutions (We need Dan and Imam to give us info on which are historically adv and which are disadv)
+
 4. Plot the collaborations structure between historically adv vs historically disadv institutions so that we can see which one's have more local and international collaborations and who are they collaborating with
+
 5. Plot total number of papers by institution by single author vs multiple author publications.
 
 Thanks Umar and Mahmoud!

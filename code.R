@@ -23,7 +23,6 @@ summary(dataset)
 sapply(dataset, class)
 
 ## Data cleaning. 
-
 library(dplyr)
 dat <- dataset %>% 
         rename(Year = Year, Country = Country, Topic = Topic, Authors = Authors, 
@@ -35,7 +34,7 @@ dat <- dataset %>%
                p_use = P_Use, p_success = P_Success, 
                n_affiliations = N_affiliations, International_collab = InternationalCollab) 
 
-ifelse(dat$african_journal=="Yes", 1,0)
+## ifelse(dat$african_journal=="Yes", 1,0) 
 
 #Transfer to csv file
 write.csv(dat, "data/dat_rename.csv")
@@ -176,7 +175,6 @@ view(Tech_c)
 
 
 # make a barplot for models
-
 plot7 <- ggplot(tech_c, aes(x = Number_of_Studies, y = Adv_Methods)) +
                   geom_bar(stat = 'identity') 
 
@@ -256,22 +254,23 @@ ggsave(filename = "plots/plants_medic_III.png")
 # Remove the missing values in a column
 dat_rename_3 <- dat_rename[!is.na(dat_rename$p_name),]
 
-
 # Group the number of articles
 Medic_counts <- dat_rename_3 %>% 
-  group_by(p_name) %>% count() 
+  group_by(p_use) %>% count() 
 article_c <- Medic_counts %>% 
   rename(Number_of_Articles = n)
 write.csv(article_c, "data/Article_c.csv")
 view(Article_c)
 
-# Rename the p_name column
+# Rename the p_use column
 article_c_I <- article_c %>% 
-  rename(Plants_Name = p_name)
+  rename(Plants_Use = p_use)
+write.csv(article_c_I, "data/Article_c_I.csv")
+
 
 # make a barplot for articles and plants
 plot10 <- ggplot(article_c_I, aes(x = Number_of_Articles, 
-                                  y = Plants_Name)) + 
+                                  y = Plants_Use)) + 
   geom_bar(width = NULL, na.rm = FALSE, orientation = NA, 
            position="dodge", stat="identity")
 
@@ -285,6 +284,49 @@ Plot11 <- plot10 + theme(axis.line = element_line(),
 save_plot(filename ="plots/plants_articles.png", Plot11)
 ggsave(filename = "plots/plants_articles_I.png")
 
-        
+## (10) Studies conducted to evaluate the effectiveness of medicinal plants
+# Remove the missing values 
+dat_rename_4 <- dat_rename[!is.na(dat_rename$p_success),]
 
-## Studies conducted to evaluate the effectiveness of medicinal plants
+# Group the number of articles
+Success_counts <- dat_rename_4 %>% 
+  group_by(p_success) %>% count() 
+success_c <- Success_counts %>% 
+  rename(Number_of_Articles = n)
+write.csv(success_c, "data/Success_c.csv")
+view(success_c)
+
+# Rename the p_success column
+success_c_I <- success_c %>% 
+  rename(Plants_Success = p_success)
+write.csv(success_c_I, "data/Success_c_I.csv")
+
+# make a barplot for plants success
+plot11 <- ggplot(success_c_I, aes(x = Number_of_Articles, 
+                                  y = Plants_Success)) + 
+  geom_bar(width = NULL, na.rm = FALSE, orientation = NA, 
+           position="dodge", stat="identity")
+
+# Eliminates background, grid lines and chart boarder
+Plot12 <- plot11 + theme(axis.line = element_line(),
+                         panel.grid.major = element_blank(),
+                         panel.grid.minor = element_blank(),
+                         panel.border = element_blank(),
+                         panel.background = element_blank())
+# Save plot     
+save_plot(filename ="plots/plants_success.png", Plot12)
+ggsave(filename = "plots/plants_success_I.png")
+
+
+## (11) Total publications by institution
+# Remove the missing values 
+dat_rename_5 <- dat_rename[!is.na(dat_rename$Institution),]
+
+# Group the number of articles
+Inst_counts <- dat_rename_5 %>% 
+  group_by(Institution) %>% count() 
+inst_c <- Inst_counts %>% 
+  rename(Number_of_Articles = n)
+write.csv(inst_c, "data/inst_c.csv")
+view(inst_c)
+
