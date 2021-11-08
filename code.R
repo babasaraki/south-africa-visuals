@@ -119,7 +119,8 @@ data_cat <- dat_rename %>%
            cut(breaks=c(-Inf, 1, 4, 8, Inf), 
                   labels=c("0-1 IF", "1-4 IF", "4-8 IF", "8+ IF"))
 
-
+dat_cat <- mutate(dat_rename, Impact_Cat = data_cat)
+view(dat_cat)
 
 
 # Add a new column IF range
@@ -329,4 +330,100 @@ inst_c <- Inst_counts %>%
   rename(Number_of_Articles = n)
 write.csv(inst_c, "data/inst_c.csv")
 view(inst_c)
+
+# Read the inst_c csv file separately 
+inst_cc <- read_csv("data/inst_c.csv")
+
+# make a barplot for plants success
+plot12 <- ggplot(inst_cc, aes(x = Number_of_Articles, 
+                                  y = Institution)) + 
+  geom_bar(width = NULL, na.rm = FALSE, orientation = NA, 
+           position="dodge", stat="identity")
+
+# Eliminates background, grid lines and chart boarder
+Plot13 <- plot12 + theme(axis.line = element_line(),
+                         panel.grid.major = element_blank(),
+                         panel.grid.minor = element_blank(),
+                         panel.border = element_blank(),
+                         panel.background = element_blank())
+# Save plot     
+save_plot(filename ="plots/total_inst.png", Plot13)
+ggsave(filename = "plots/total_inst_I.png")
+
+
+## (11-1) Total citation by institution
+
+# Group the institution and mean citations 
+Mean_ca <- dat_rename %>% 
+  group_by(Institution, Mean_Citations) %>% count() 
+mean_ca <- Mean_ca %>% 
+  rename(Mean_C = n)
+write.csv(mean_ca, "data/mean_ca.csv")
+view(mean_ca)
+
+
+# Read the mean_ca csv file separately 
+mean_cc <- read_csv("data/mean_ca.csv")
+spec(mean_ca)
+
+# make a barplot for plants success
+plot13 <- ggplot(mean_cc, aes(x = Mean_Citations, 
+                              y = Institution)) + 
+  geom_bar(width = NULL, na.rm = FALSE, orientation = NA, 
+           position="dodge", stat="identity")
+
+# Eliminates background, grid lines and chart boarder
+Plot14 <- plot13 + theme(axis.line = element_line(),
+                         panel.grid.major = element_blank(),
+                         panel.grid.minor = element_blank(),
+                         panel.border = element_blank(),
+                         panel.background = element_blank())
+# Save plot     
+save_plot(filename ="plots/mean_ca.png", Plot14)
+ggsave(filename = "plots/mean_ca_I.png")
+
+
+# (12) Total number of papers by institution by single vs multiple 
+dat_rename_6 <- dat_rename[!is.na(dat_rename$Institution),]
+
+# Group the institution and category of authors
+Authrs_counts <- dat_rename_6 %>% 
+  group_by(Institution, Category_of_Authors) %>% count() 
+authrs_c <- Authrs_counts %>% 
+  rename(Number_of_Articles = n)
+write.csv(inst_c, "data/authrs_c.csv")
+view(authrs_c)
+
+## .....Imported to Python for visualization from here....
+
+# (13) Total number of papers by institution by historically adv. 
+dat_rename_7 <- dat_rename[!is.na(dat_rename$Institution),]
+dat_rename_8 <- dat_rename_7[!is.na(dat_rename_7$Historically_Adv_Disav),]
+
+
+# Group the institution and category of authors
+Hist_counts <- dat_rename_8 %>% 
+  group_by(Institution, Historically_Adv_Disav) %>% count() 
+hist_c <- Hist_counts %>% 
+  rename(Number_of_Articles = n)
+write.csv(hist_c, "data/hist_c.csv")
+view(hist_c)
+
+## ....Imported to Python for visualization from here....
+
+# (14) Collaborations structure between historically adv vs historically disadv
+collab <- read_csv("data/dat_rename.csv")
+dat_rename_9 <- collab[!is.na(collab$Institution),]
+view(collab)
+dat_rename_10 <- dat_rename_9[!is.na(dat_rename_9$Historically_Adv_Disav),]
+dat_rename_11 <- dat_rename_10[!is.na(dat_rename_10$Collaboration),]
+
+# Group the institution, historically adv and collaboration
+Collab_counts <- dat_rename_11 %>% 
+  group_by(Institution, Historically_Adv_Disav, Collaboration) %>% count() 
+collab_c <- Collab_counts %>% 
+  rename(Number_of_Articles = n)
+write.csv(collab_c, "data/collab_c.csv")
+view(collab_c)
+
 
