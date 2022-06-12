@@ -44,12 +44,28 @@ spec(dat_rename) # Retrieve the full column specification
 
 
 ##(1) Total publication per year for clinical and basic research. 
+
 pap_counts <- dat_rename %>% 
         group_by(Year, Research_Types) %>% count() 
 dat_c <- pap_counts %>% 
+        rename(Papers_Published = n)
+view(dat_c)
+
+
+##(ALL) Total publication per year for ALL institutions. 
+pupln_counts <- dat_rename %>% 
+        group_by(Year, Institution) %>% count() 
+publn_c <- pupln_counts %>% 
    rename(Papers_Published = n)
-     view(dat_c)
-     
+       write.csv(publn_c, "data/publn_c.csv")
+       
+##(Articles) Total publication per year for ALL Journals 
+jonl_counts <- dat_rename %>% 
+        group_by(Year, Journal) %>% count() 
+jonl_c <- jonl_counts %>% 
+   rename(Papers_Published = n)
+      write.csv(jonl_c, "data/jonl_c.csv")
+       
 #ggplot(data = dat_c) +
  #  geom_line(mapping = aes(x = Year, y = Papers_Published, 
   #                         linetype = Research_Types, color = Research_Types)) + theme_bw()
@@ -369,7 +385,7 @@ spec(mean_ca)
 # make a barplot for plants success
 plot13 <- ggplot(mean_cc, aes(x = Mean_Citations, 
                               y = Institution)) + 
-  geom_bar(width = NULL, na.rm = FALSE, orientation = NA, 
+  geom_bar(width = NULL, na.rm = TRUE, orientation = NA, 
            position="dodge", stat="identity")
 
 # Eliminates background, grid lines and chart boarder
@@ -391,8 +407,9 @@ Authrs_counts <- dat_rename_6 %>%
   group_by(Institution, Category_of_Authors) %>% count() 
 authrs_c <- Authrs_counts %>% 
   rename(Number_of_Articles = n)
-write.csv(inst_c, "data/authrs_c.csv")
+write.csv(authrs_c, "data/authrs_c.csv")
 view(authrs_c)
+
 
 ## .....Imported to Python for visualization from here....
 
@@ -413,17 +430,58 @@ view(hist_c)
 
 # (14) Collaborations structure between historically adv vs historically disadv
 collab <- read_csv("data/dat_rename.csv")
+spec(collab)
 dat_rename_9 <- collab[!is.na(collab$Institution),]
 view(collab)
 dat_rename_10 <- dat_rename_9[!is.na(dat_rename_9$Historically_Adv_Disav),]
-dat_rename_11 <- dat_rename_10[!is.na(dat_rename_10$Collaboration),]
+dat_rename_11 <- dat_rename_10[!is.na(dat_rename_10$International_collab),]
 
 # Group the institution, historically adv and collaboration
 Collab_counts <- dat_rename_11 %>% 
-  group_by(Institution, Historically_Adv_Disav, Collaboration) %>% count() 
+  group_by(Institution, Historically_Adv_Disav, International_collab) %>% count() 
 collab_c <- Collab_counts %>% 
   rename(Number_of_Articles = n)
 write.csv(collab_c, "data/collab_c.csv")
 view(collab_c)
+
+
+## (15) Total citation by institution for citations
+
+# Group the institution and mean citations 
+
+dat_rename_7 <- dat_rename[!is.na(dat_rename$Institution),]
+dat_rename_8 <- dat_rename_7[!is.na(dat_rename_7$Historically_Adv_Disav),]
+
+
+# Group the institution and category of authors
+Hist_counts <- dat_rename_8 %>% 
+  group_by(Institution, Mean_Citations, Historically_Adv_Disav) %>% count() 
+hist_cc <- Hist_counts %>% 
+  rename(Number_of_Articles = n)
+
+# Read the mean_ca csv file separately 
+write.csv(hist_cc, "data/hist_cc.csv")
+view(hist_cc)
+
+
+# Group the authors by means citations 
+Authr_counts <- dat_rename_8 %>% 
+        group_by(Category_of_Authors, Mean_Citations, Historically_Adv_Disav) %>% count() 
+authr_cc <- Authr_counts %>% 
+        rename(Number_of_Articles = n)
+
+# Read the mean_ca csv file separately 
+write.csv(authr_cc, "data/authr_cc.csv")
+view(authr_cc)
+
+# Group by Publications, Year and Citations 
+Publ_counts <- dat_rename_8 %>% 
+        group_by(Institution, Mean_Citations, Year) %>% count() 
+publ_cc <- Publ_counts %>% 
+        rename(Number_of_Articles = n)
+
+# Read the publn_ca csv file separately 
+write.csv(publ_cc, "data/publ_cc.csv")
+view(hist_cc)
 
 

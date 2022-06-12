@@ -17,5 +17,43 @@ Thanks Umar and Mahmoud!
 “Of South Africa's 26 public universities, those that are recognised as historically disadvantaged are the universities of Fort Hare, Limpopo, Venda, Walter Sisulu, the Western Cape and Zululand, as well as the Mangosuthu University of Technology and the Sefako Makgatho Health Sciences University”.
 Best, Dan
 
+FROM DAN
+
 Umar in the list, I think some of the Universities were merged. So their name before 2000 might be different from their name after 2000. For example.
 The University of KwaZulu-Natal (UKZN) is a university with five campuses in the province of KwaZulu-Natal in South Africa. It was formed on 1 January 2004 after the merger between the University of Natal and the University of Durban-Westville
+
+I’m a bit worried about IIDDM, RCCWMH, and GSH:  these are all components of UCT rather than separate institutions.  Similarly if TH is Tygerberg Hospital, this is Stellenbosch University.
+
+The MRC is separate from UCT, but it doesn’t do basic neuroscience research, so I worry that most of its publications may also be UCT (ie MRC Units based at UCT).
+
+The one local angle we had talked about is dividing things into historically advantaged and historically disadvantaged universities, so it might be worth running some analyses that compare the two sets of institutions.
+
+Again, these are really useful data in my view.
+
+
+All the best,
+
+
+Yes, I think more question would come up during the write up. @imam.a@unilorin.edu.ng could you please start working on the text. As I think, the whole idea is roughly clear. You could then link with Umar if you think a particular analysis is unclear.
+
+ 
+
+@Umar Ahmad could you look at Dan’s comments and merge the data and re-plot please. Specifically regarding this:
+
+I’m a bit worried about IIDDM, RCCWMH, and GSH:  these are all components of UCT rather than separate institutions.  Similarly if TH is Tygerberg Hospital, this is Stellenbosch University.
+
+The MRC is separate from UCT, but it doesn’t do basic neuroscience research, so I worry that most of its publications may also be UCT (ie MRC Units based at UCT).
+
+Also, Umar could you run some stat on the data extracted from historically advantaged and historically disadvantaged universities. For example, we could compare their citations and papers.
+
+Also, Umar, regarding the institutional collaboration, it is not clear to me why we have only four institutions?
+
+Looking forward to hearing from you.
+
+Best wishes
+
+Mahmoud
+
+
+
+
